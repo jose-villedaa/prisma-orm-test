@@ -1,22 +1,20 @@
-import React from "react";
-import { db } from "@/db";
-import Link from "next/link";
+import React from 'react';
+import { db } from '@/db';
+import Link from 'next/link';
 
 export default async function Home() {
   const snippets = await db.snippet.findMany();
 
-  const renderedSnippets: JSX.Element[] = snippets.map((snippet) => {
-    return (
-      <Link
-        key={snippet.id}
-        className="flex justify-between items-center p-2 border rounder"
-        href={`snippets/${snippet.id}`}
-      >
-        <div className="font-bold">{snippet.title}</div>
-        <div>View</div>
-      </Link>
-    );
-  });
+  const renderedSnippets: JSX.Element[] = snippets.map((snippet) => (
+    <Link
+      key={snippet.id}
+      className="flex justify-between items-center p-2 border rounder"
+      href={`snippets/${snippet.id}`}
+    >
+      <div className="font-bold">{snippet.title}</div>
+      <div>View</div>
+    </Link>
+  ));
 
   return (
     <div>

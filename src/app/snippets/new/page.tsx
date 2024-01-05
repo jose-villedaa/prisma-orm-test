@@ -1,13 +1,13 @@
-import React from "react";
-import { redirect } from "next/navigation";
-import { db } from "@/db";
+import React from 'react';
+import { redirect } from 'next/navigation';
+import { db } from '@/db';
 
 export default function SnippetCreatePage(): JSX.Element {
   async function createSnippet(formData: FormData) {
-    "use server";
+    'use server';
 
-    const title: FormDataEntryValue = formData.get("title") as string;
-    const code: FormDataEntryValue = formData.get("code") as string;
+    const title: FormDataEntryValue = formData.get('title') as string;
+    const code: FormDataEntryValue = formData.get('code') as string;
 
     await db.snippet.create({
       data: {
@@ -16,10 +16,8 @@ export default function SnippetCreatePage(): JSX.Element {
       },
     });
 
-    redirect(`/`);
+    redirect('/');
   }
-
-
 
   return (
     <form action={createSnippet}>
