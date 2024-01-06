@@ -1,5 +1,5 @@
-interface PageProps {
-    params: {
-        id: string;
-    };
-};
+interface PageProps<Params> {
+  params: {
+    id: Params;
+  };
+}

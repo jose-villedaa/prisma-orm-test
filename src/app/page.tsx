@@ -1,3 +1,5 @@
+'use server';
+
 import React from 'react';
 import { db } from '@/db';
 import Link from 'next/link';

@@ -1,15 +1,29 @@
-import React from 'react';
+'use server';
 
-export default function SnippetEditPage(props: PageProps) {
-  const id = Number(props.params.id);
+import React from 'react';
+import { db } from '@/db';
+import { notFound } from 'next/navigation';
+import EditForm from '@/components/EditForm';
+
+export default async function SnippetEditPage({ params }: PageProps<string>) {
+  const id = Number(params.id);
+
+  const snippet = await db.snippet.findFirst({
+    where: {
+      id,
+    },
+  });
+
+  if (!snippet) {
+    return notFound();
+  }
 
   return (
     <div>
       <h1 className="text-xl bold">
         Edit Snippet
-        {' '}
-        {id}
       </h1>
+      <EditForm snippet={snippet} />
     </div>
   );
 }
