@@ -14,7 +14,7 @@ export default async function Home() {
       href={`snippets/${snippet.id}`}
     >
       <div className="font-bold">{snippet.title}</div>
-      <div>View</div>
+      <div className="text-blue-500 hover:text-blue-700 transition-colors cursor-pointer">View</div>
     </Link>
   ));
 
@@ -26,7 +26,7 @@ export default async function Home() {
           New
         </Link>
       </div>
-      <div className="flex flex-col gap-2">{renderedSnippets}</div>
+      <div className="flex flex-col gap-2 hover:bg-gray-200 transition-colors">{renderedSnippets}</div>
     </div>
   );
 }
