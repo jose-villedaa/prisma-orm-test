@@ -1,28 +1,16 @@
+'use client';
+
 import React from 'react';
-import { redirect } from 'next/navigation';
-import { db } from '@/db';
+import * as serverActions from '@/actions';
+import { useFormState } from 'react-dom';
 
 export default function SnippetCreatePage(): JSX.Element {
-  async function createSnippet(formData: FormData) {
-    'use server';
-
-    const title: FormDataEntryValue = formData.get('title') as string;
-    const code: FormDataEntryValue = formData.get('code') as string;
-
-    await db.snippet.create({
-      data: {
-        title,
-        code,
-      },
-    });
-
-    redirect('/');
-  }
+  const [formState, action] = useFormState(serverActions.createSnippet, { message: '' });
 
   return (
-    <form action={createSnippet}>
+    <form action={action}>
       <div>
-        <h3 className="font-bold m-3 justify-center">Create Snippet</h3>
+        <h3 className="font-bold m-3 justify-center text-center w-full">Create Snippet</h3>
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">
@@ -47,6 +35,12 @@ export default function SnippetCreatePage(): JSX.Element {
             placeholder="Enter your code..."
           />
         </div>
+
+        {formState.message ? (
+          <div className="my-2 p-2 bg-red-200 border rounded border-red-600">
+            {formState.message}
+          </div>
+        ) : null}
         <button
           type="submit"
           className="border rounded p-2 bg-blue-200 hover:bg-blue-300 transition-colors"
