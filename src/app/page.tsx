@@ -1,7 +1,7 @@
 'use server';
 
 import React from 'react';
-import { db } from '@/db';
+import db from '@/db';
 import Link from 'next/link';
 
 export default async function Home() {

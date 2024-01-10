@@ -1,10 +1,12 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
-export const db = new PrismaClient();
+const db = new PrismaClient();
 
 db.snippet.create({
   data: {
-    title: "Hello World",
-    code: "const abc = () => {}",
+    title: 'Hello World',
+    code: 'const abc = () => {}',
   },
 });
+
+export default db;

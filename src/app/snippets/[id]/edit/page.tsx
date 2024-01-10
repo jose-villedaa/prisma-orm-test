@@ -1,7 +1,7 @@
 'use server';
 
 import React from 'react';
-import { db } from '@/db';
+import db from '@/db';
 import { notFound } from 'next/navigation';
 import EditForm from '@/components/EditForm';
 

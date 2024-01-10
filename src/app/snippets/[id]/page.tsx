@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { db } from '@/db';
+import db from '@/db';
 import Link from 'next/link';
 import Code from '@/components/Code';
 import * as serverActions from '@/actions';
@@ -41,4 +41,14 @@ export default async function SnippetShowPage(props: PageProps<string>) {
       <Code code={snippet.code} />
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  const snippets = await db.snippet.findMany();
+
+  return snippets.map((snippet) => ({
+    params: {
+      id: String(snippet.id),
+    },
+  }));
 }
